@@ -1,0 +1,29 @@
+import numpy as np
+import timeit
+from sklearn.metrics import confusion_matrix
+np.random.seed(2021)
+
+
+pop_size = 5000000
+spc = 0.99
+sns = 0.99
+prv = 0.001
+
+starttime = timeit.default_timer()
+
+people_inf = np.where(np.random.rand(pop_size)<prv, 1, 0)
+x = np.random.rand(pop_size)
+people_tes = np.where(((people_inf==1) & (x<sns)) | ((people_inf==0) & (x>=spc)), 1, 0)
+    
+tpp = np.where( (people_inf==1) & (people_tes==1) )
+pp = np.where( people_tes==1 )
+print(len(pp[0]))
+  
+
+#cm = confusion_matrix(people_inf, people_tes)
+#print(cm)
+#tn, fp, fn, tp = cm.ravel()
+#print(tn, fp, fn, tp)
+#print(tp/(tp+fp))
+
+print('Time: ' + str(timeit.default_timer()-starttime))
