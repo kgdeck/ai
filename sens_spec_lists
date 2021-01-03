@@ -1,0 +1,41 @@
+import random
+#import timeit
+random.seed(2021)
+
+pop_size = 5000000
+spc = 0.99
+sns = 0.99
+prv = 0.001
+
+#starttime = timeit.default_timer()
+
+people_inf = [1 if random.random()<prv else 0 for i in range(pop_size)]
+#people_inf = list()
+#for i in range(pop_size):
+#    inf = 0
+#    if random.random()<prv: inf=1
+#    people_inf.append(inf)
+
+people_tes = list()
+for i in range(pop_size):
+    test = 0 
+    rand = random.random()
+    if people_inf[i]==1 and rand<sns: #sensitivität: 99 % aller infizierten haben posiviten test, rest negativ
+        test = 1 
+    if people_inf[i]==0 and rand>=spc: #spezifität: 99 % aller nicht-infizierten haben negativen test, rest positiv
+        test = 1
+    people_tes.append( test )
+
+#true positiv
+tp = len([i for i in range(pop_size) if people_inf[i]==1 and people_tes[i]==1])
+#true negativ 
+tn = len([i for i in range(pop_size) if people_inf[i]==0 and people_tes[i]==0])
+fp = len([i for i in range(pop_size) if people_inf[i]==0 and people_tes[i]==1])
+fn = len([i for i in range(pop_size) if people_inf[i]==1 and people_tes[i]==0])
+print(tp, tn, fp, fn)
+#positiv getestet
+p = len([x for x in people_tes if x==1])
+# w(infiziert | positiv getestet), "als positiv getestete person infiziert zu sein"
+print(tp/p)
+
+#print('Time: ' + str(timeit.default_timer()-starttime))
