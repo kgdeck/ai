@@ -19,7 +19,10 @@ def lin_koeff( lx, ly ):
     z = sum( (x-mn_x)*(y-mn_y) for x, y in zip(lx, ly) )
     n = sum( ((x-mn_x)**2 for x in lx))
     
+    #b steigung
     b = z/n
+    
+    #a achsenabschnitt
     a = mn_y - b*mn_x
     return a, b
 
@@ -46,3 +49,12 @@ xx = np.array(col_x)
 yy = np.array(col_y)
 print( lin_koeff( xx, yy ) )
 print( lin_koeff_np( xx, yy ) )
+
+#import matplotlib.pyplot as plt
+#xp = np.linspace(140,190,200)
+#yp = a + b*(xp)
+#plt.scatter(col_x, col_y )
+#plt.plot(xp,yp,'k:')
+#plt.xlabel('x')
+#plt.ylabel('y')
+#plt.show()
