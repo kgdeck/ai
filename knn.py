@@ -1,4 +1,4 @@
-#euclid distance
+# euclid
 def dist(v1, v2):
     z = sum( (x1-x2)**2 for x1, x2 in zip(v1, v2))
     return z ** 0.5
@@ -39,3 +39,14 @@ plt.scatter([x[0] for x in X_train], [x[1] for x in X_train], c=Y_train)
 plt.scatter([x[0] for x in X_pred],[x[1] for x in X_pred], c=predicts, s=400, marker='+')
 plt.axis([0, 10, 0, 8])
 plt.show()
+
+#trainings- und test-daten aus iris
+iris = datasets.load_iris() 
+X, y = iris.data[:, :], iris.target
+Xtrain, Xtest, y_train, y_test = train_test_split(X, y, stratify = y, random_state = 3, train_size = 0.8)
+scaler = preprocessing.StandardScaler().fit(Xtrain)
+Xtrain = scaler.transform(Xtrain)
+Xtest = scaler.transform(Xtest)
+
+print( len(Xtrain), len(y_train) )
+print( len(Xtest), len(y_test) )
