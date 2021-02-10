@@ -1,4 +1,3 @@
-# euclid
 def dist(v1, v2):
     z = sum( (x1-x2)**2 for x1, x2 in zip(v1, v2))
     return z ** 0.5
@@ -41,6 +40,8 @@ plt.axis([0, 10, 0, 8])
 plt.show()
 
 #trainings- und test-daten aus iris
+from sklearn import datasets, preprocessing
+from sklearn.model_selection import train_test_split
 iris = datasets.load_iris() 
 X, y = iris.data[:, :], iris.target
 Xtrain, Xtest, y_train, y_test = train_test_split(X, y, stratify = y, random_state = 3, train_size = 0.8)
