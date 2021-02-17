@@ -6,12 +6,12 @@
 
 from sklearn.datasets import make_blobs  # nur für Beispieldatensätze
 import random
-random.seed(11)
+random.seed(19)
 import matplotlib.pyplot as plt
 
 # Quadrat der euklidschen Metrik
 def dist_points( a, b ):
-    return (a[0]-b[0])**2 + (a[1]-b[1])**2
+    return sum((x-y)**2 for x,y in zip(a,b))
 
 def dist_array( x, y ):
     rc = 0.
@@ -34,7 +34,7 @@ def minidx( x, y ):
 # hier geht's los
 #
 
-maxIterations = 400
+maxIterations = 100
 k = 5
 
 # generiert beispieldatensatz mit labels
