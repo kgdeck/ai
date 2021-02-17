@@ -88,3 +88,20 @@ while len(clusters)>1 and count<len(X):
     del clusters[j]
     print( clusters )
     
+#Ausnahmsweise mit scipy - Details siehe Dokumentation von dendogram, linkage
+from scipy.cluster.hierarchy import dendrogram, linkage
+from matplotlib import pyplot as plt
+
+#linked = linkage(X, 'single')
+linked = linkage(X, 'centroid')
+
+labelList = range(1, len(X)+1)
+
+plt.figure(figsize=(10, 7))
+plt.title('Dendrogram')
+dendrogram(linked,
+            orientation='top',
+            labels=labelList,
+            distance_sort='descending',
+            show_leaf_counts=True)
+plt.show()
