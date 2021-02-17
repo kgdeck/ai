@@ -10,21 +10,21 @@ random.seed(19)
 import matplotlib.pyplot as plt
 
 # Quadrat der euklidschen Metrik
-def dist_points( a, b ):
+def dist_points_sqr( a, b ):
     return sum((x-y)**2 for x,y in zip(a,b))
 
 def dist_array( x, y ):
     rc = 0.
     for i in range(len(x)):
-        rc += dist_points( x[i], y[i] )
+        rc += dist_points_sqr( x[i], y[i] )
     return rc
 
 # index i mit minimaler dist zwischen x und y[i]
 def minidx( x, y ):
     min = 0
-    d = dist_points( x, y[0] )
+    d = dist_points_sqr( x, y[0] )
     for i in range(1, len(y)):
-        d1 = dist_points( x, y[i] )
+        d1 = dist_points_sqr( x, y[i] )
         if d1 < d:
             d = d1
             min = i
